@@ -28,5 +28,6 @@ public class SessionService {
         Payment payment = paymentService.payment(paymentId);
 
         session.addStudent(student, payment);
+        sessionRepository.save(session);
     }
 }

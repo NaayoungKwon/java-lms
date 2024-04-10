@@ -4,6 +4,7 @@ import nextstep.payments.domain.Payment;
 import nextstep.users.domain.NsUser;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static nextstep.courses.domain.SessionState.PREPARING;
 import static nextstep.courses.domain.SessionState.RECRUITING;
@@ -44,6 +45,42 @@ public class Session extends BaseEntity {
         checkSessionCapacity();
         checkAlreadyPaid(payment);
         this.students.add(newStudent);
+    }
+
+    public Long getCourseId(){
+        return this.course.id;
+    }
+
+    public Image getImage(){
+        return this.coverImage;
+    }
+
+    public LocalDate getStartDate(){
+        return this.duration.startDate;
+    }
+
+    public LocalDate getEndDate(){
+        return this.duration.endDate;
+    }
+
+    public String getPayType(){
+        return this.payType.name();
+    }
+
+    public LocalDateTime getCreatedAt(){
+        return this.createdAt;
+    }
+
+    public String getState(){
+        return this.state.name();
+    }
+
+    public Long getFee(){
+        return this.fee;
+    }
+
+    public void setId(Long id){
+        this.id = id;
     }
 
     private void validatePayType(SessionPayType sessionPayType, Integer maxStudent, Long sessionFee) {
